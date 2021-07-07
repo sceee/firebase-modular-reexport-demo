@@ -1,0 +1,21 @@
+name: pipeline
+
+on:
+  push:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '12.x'
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install Dependencies
+      run: npm ci
+    - name: Build
+      run: |
+        npm run build
